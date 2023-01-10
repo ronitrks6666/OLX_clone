@@ -9,15 +9,16 @@ import SellItemFrom from './screens/SellItemForm';
 import SelfPostedItems from './screens/SelfPostedItems';
 import OrderedItem from './screens/OrderedItem';
 import Signup from './screens/Signup';
-
+import axios from "axios";
+import ProductDetail from './screens/ProductDetail';
+ 
 const { useNavigate } = require("react-router-dom");
-const axios = require("axios");
 
 
 function App() {
 
- // const navigate = useNavigate();
- const [showHeader, setshowHeader] = useState(false)
+  // const navigate = useNavigate();
+  const [showHeader, setshowHeader] = useState(false)
 
   useEffect(() => {
     const checkLoggedIn = async () => {
@@ -31,34 +32,40 @@ function App() {
         return;
       }
 
-      const tokenRes = await axios.post("/api/auth/isTokenValid", null, {
-        headers: { Authorization: `${token}` },
-      });
-
-      if (tokenRes.data) {
-        setshowHeader(true)
-      }else{
-        window.location.href = '/login'
+      axios.post("/api/isTokenValid", null, {
+        headers: {
+          'Authorization': `${token}`
+        }
+      }).then(
+        (response) => {
+          setshowHeader(true)
+        },
+        (error) => {
+          window.location.href = '/login'
         setshowHeader(false)
-      }
+          if (error.response.status == 401) {
+          }
+        }
+      );
     };
 
-    if(window.location.pathname != '/login' && window.location.pathname != '/sign-up' ){
+    if (window.location.pathname != '/login' && window.location.pathname != '/sign-up') {
       checkLoggedIn();
     }
   }, []);
   return (
     <>
       <BrowserRouter>
-      {showHeader ? <Header/> :<></> }
+        {showHeader ? <Header /> : <></>}
         <Routes>
 
-          <Route path="/login" exact element={<Login/>} />
-          <Route path="/sign-up" exact element={<Signup/>} />
-          <Route path="/" exact element={<Dashboard/>} />
-          <Route path="/sell-item" exact element={<SellItemFrom/>} />
-          <Route path="/self-items" exact element={<SelfPostedItems/>} />
-          <Route path="/ordered-items" exact element={<OrderedItem/>} />
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/sign-up" exact element={<Signup />} />
+          <Route path="/" exact element={<Dashboard />} />
+          <Route path="/sell-item" exact element={<SellItemFrom />} />
+          <Route path="/self-items" exact element={<SelfPostedItems />} />
+          <Route path="/ordered-items" exact element={<OrderedItem />} />
+          <Route path="/item" exact element={<ProductDetail />} />
         </Routes>
       </BrowserRouter>
     </>

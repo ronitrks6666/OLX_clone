@@ -85,6 +85,7 @@ const authCtrl = {
     },
     listAllProduct : async (req,res)=>{
         try {
+            console.log('unsold prod')
             const products = await pagination(Product, Product.find({soldStatus:0}), req.query)
             res.json({products})
         } catch (error) {

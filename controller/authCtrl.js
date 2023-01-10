@@ -65,7 +65,7 @@ const authCtrl = {
     //To verify the token stored in localStorage
     isTokenValid: async (req, res) => {
         try {
-            const token = req.headers.authorization;
+            const token = req.header("Authorization")
             if (!token) {
                 return res.json(false);
             }
@@ -79,7 +79,7 @@ const authCtrl = {
             }
             return res.json(true);
         } catch (err) {
-            res.json(false);
+            res.json(false); 
         }
     }
 }

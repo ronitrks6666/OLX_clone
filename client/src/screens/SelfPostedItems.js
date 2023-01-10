@@ -82,7 +82,7 @@ export default function SelfPostedItems() {
                                         <img src={`${data.thumbnail}`} class="card-img-top" alt="..."/>
                                             <div class="card-body">
                                                 <h5 class="card-title">{data.ProductName}</h5>
-                                                <p class="card-text">Price : {data.price}</p>
+                                                <p class="card-text">Price : {data.price} <span class={`badge ${data.soldStatus == 0 ? 'bg-primary':'bg-success'}`}>{data.soldStatus == 0 ? 'Unsold':'Sold'}</span></p>
                                                 <a href="#" class="btn btn-primary" onClick={()=>toggleVerifyModal(data)}>Status Update</a>
                                             </div>
                                     </div>

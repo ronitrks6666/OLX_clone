@@ -1081,8 +1081,8 @@ ol {
 }
 
 .featured__item__pic__hover li:hover a {
-	background: #7fad39;
-	border-color: #7fad39;
+	background: #7ead3900;
+	border-color: #fff;
 }
 
 .featured__item__pic__hover li:hover a i {
@@ -1092,15 +1092,13 @@ ol {
 
 .featured__item__pic__hover li a {
 	font-size: 16px;
-	color: #1c1c1c;
+	font-weight: 600;
+	color: #fff;
 	height: 40px;
-	width: 40px;
+	width: fit-content;
 	line-height: 40px;
 	text-align: center;
-	border: 1px solid #ebebeb;
-	background: #ffffff;
 	display: block;
-	border-radius: 50%;
 	-webkit-transition: all, 0.5s;
 	-moz-transition: all, 0.5s;
 	-ms-transition: all, 0.5s;
@@ -3689,4 +3687,46 @@ ol {
 
 .col-lg-6 {
 	max-width: 100%!important;
+}
+
+/* Pagination */
+
+.pagination{
+    margin-top: 30px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    font-size: 1.2rem;
+    gap: 5px;
+}
+
+.pagination .page-num{
+    padding: 8px  15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 400;
+    color: blue;
+}
+
+.pagination .page-num:hover{
+    background-color: #5AB1BB;
+    color: #fff;
+}
+
+.pagination .active{
+    background-color: #5AB1BB;
+}
+
+.featured__filter{
+	width: 100%;
+}
+
+.carousel-btn{
+	color: black;
+}
+.badge{
+	margin: 0 10px;
+	color: white;
 }
